@@ -3,7 +3,7 @@ package org.bqi.dataDistributor.dto;
 import lombok.Data;
 
 @Data
-public class NewMessageDto {
+public class StudentActivityMessageDto{
     private String timeStamp;
     private String studentId;
     private String what;
