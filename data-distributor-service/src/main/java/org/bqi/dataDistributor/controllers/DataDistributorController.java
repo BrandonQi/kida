@@ -25,8 +25,8 @@ public class DataDistributorController {
     @PostMapping("/student-activity-message")
     @ResponseBody
     public ResponseEntity postStudentActivityMessage(@RequestBody String studentActivityMesg) {
-        studentActivityService.publicStudentActivityMesg(studentActivityMesg);
-        return ResponseEntity.ok(HttpStatus.OK);
+        String mesgId = studentActivityService.publicStudentActivityMesg(studentActivityMesg);
+        return ResponseEntity.ok(mesgId);
     }
 
 }
