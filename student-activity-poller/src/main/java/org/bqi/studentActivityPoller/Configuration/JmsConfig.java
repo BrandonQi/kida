@@ -14,7 +14,7 @@ import javax.jms.Session;
 
 @Configuration
 @EnableJms
-public class JmsConfig{
+public class JmsConfig {
 
   SQSConnectionFactory connectionFactory = SQSConnectionFactory.builder()
                                                                .withRegion(Region.getRegion(Regions.US_EAST_1))
@@ -22,7 +22,7 @@ public class JmsConfig{
                                                                .build();
 
   @Bean
-  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(){
+  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
     DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
     factory.setConnectionFactory(this.connectionFactory);
     factory.setDestinationResolver(new DynamicDestinationResolver());

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import javax.jms.JMSException;
 
 @Service
-public class StudentActivityPoller{
+public class StudentActivityPoller {
 
   @JmsListener(destination = "StudentActivity")
-  public void saveStudentActivity(String requestJSON) throws JMSException{
+  public void saveStudentActivity(String requestJSON) throws JMSException {
 
     System.out.println(requestJSON);
 
