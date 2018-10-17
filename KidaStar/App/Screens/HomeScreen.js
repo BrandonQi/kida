@@ -38,7 +38,7 @@ class HomeScreen extends React.Component {
     }
 
     handleHelpButtonPress() {
-        this.props.navigation.navigate('Details', {
+        this.props.navigation.navigate('Credential', {
             itemId: 86,
             otherParam: 'anything you want here'
         });
