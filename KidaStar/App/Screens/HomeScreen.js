@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Left, Right, Body, Title} from 'native-base';
 
+import api from "../Utils/api";
+
 const firstInputLabel = 'Username';
 const secondInputLabel = 'Password';
 const successButtonLabel = 'Login';
@@ -31,6 +33,14 @@ class HomeScreen extends React.Component {
     }
 
     handleSuccessButtonPress() {
+        // handle spinner
+        this.setState({
+            isLoading: true
+        });
+        console.log('Login', this.state.username, this.state.password);
+        // fetch user data
+        api.getTeacherInfo(this.state.username).then((res) => console.log(res));
+        // re-route to the detail page
         this.props.navigation.navigate('Details', {
             itemId: 86,
             otherParam: 'anything you want here'
