@@ -39,11 +39,12 @@ class HomeScreen extends React.Component {
         });
         console.log('Login', this.state.username, this.state.password);
         // fetch user data
-        api.getTeacherInfo(this.state.username).then((res) => console.log(res));
+        let teacherInfo = api.getTeacherInfo(this.state.username);
+        let activitiesInfo = api.getActivitiesInfo();
         // re-route to the detail page
         this.props.navigation.navigate('Details', {
-            itemId: 86,
-            otherParam: 'anything you want here'
+                teacherInfo: teacherInfo,
+                activitiesInfo: activitiesInfo
         });
     }
 

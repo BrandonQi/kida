@@ -1,35 +1,54 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {ScrollView, Text, View, StyleSheet} from 'react-native';
 
 class DetailsScreen extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectStudentId : '',
+            activity : {
+                what : '',
+                unit : '',
+                count : 0
+            }
+        }
+    }
     render() {
-        /* 2. Get the param, provide a fallback value if not available */
-        const itemId = this.props.navigation.getParam('itemId', 'NO-ID');
-        const otherParam = this.props.navigation.getParam('otherParam', 'some default value');
+        const teacherInfo = this.props.navigation.getParam('teacherInfo', {
+            'id': '',
+            'studentList': []
+        });
+        const activitiesInfo = this.props.navigation.getParam('activitiesInfo', []);
+
+        console.log(teacherInfo);
+        console.log(activitiesInfo);
+
+        let studentList = teacherInfo.studentList.map((student) => {
+            return (
+                <View key={student.id} style={styles.rowContainer}>
+                    <Text style={styles.rowTitle}>{student.name}</Text>
+                </View>
+            )
+        });
 
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Details Screen</Text>
-                <Text>itemId: {itemId}</Text>
-                <Text>otherParam: {otherParam}</Text>
-                <Button
-                    title="Go to Details... again"
-                    onPress={() =>
-                        this.props.navigation.push('Details', {
-                            itemId: Math.floor(Math.random() * 100),
-                        })}
-                />
-                <Button
-                    title="Go to Home"
-                    onPress={() => this.props.navigation.navigate('Home')}
-                />
-                <Button
-                    title="Go back"
-                    onPress={() => this.props.navigation.goBack()}
-                />
+            <View>
+                <ScrollView>
+                    {studentList}
+                </ScrollView>
             </View>
+
         );
     }
 }
+
+const styles = StyleSheet.create({
+    rowContainer : {
+        padding : 15
+    },
+    rowTitle : {
+        fontSize: 20
+    }
+});
 
 module.exports = DetailsScreen;
